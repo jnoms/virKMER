@@ -46,6 +46,9 @@ done
 # Main
 #------------------------------------------------------------------------------#
 
+# Make output directory if necessary
+mkdir -p $(dirname $OUTPUT_FILE)
+
 # Search for the kmers in the reads file, and get the headers of positive reads.
 # EXPLAINATION - first grep the reads_file for any non-regex (-F) pattern in the
 # kmer_file (-f) and report back the line before it (the header). Get only the

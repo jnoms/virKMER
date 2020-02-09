@@ -4,6 +4,7 @@ import pathlib
 import os
 
 def read_in_kmers(infile):
+    print("Reading in {}".formrat(infile))
     kmers = set()
     with open(infile) as infile_handle:
         for line in infile_handle:
@@ -24,6 +25,7 @@ def write_output(msg ,outfile):
     pathlib.Path(out_dir).mkdir(parents=True, exist_ok=True)
 
     # write output
+    print("Writing common kmers to {}".format(outfile))
     with open(outfile, "w") as outfile_handle:
          outfile_handle.write(msg)
 

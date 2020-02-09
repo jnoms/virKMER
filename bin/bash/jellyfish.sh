@@ -51,11 +51,21 @@ done
 # Main
 #------------------------------------------------------------------------------#
 
-# Load required dependencies
-module load gcc jellyfish
-
 # Define defaults
 LOW_COUNT=${LOW_COUNT:-2}
+
+# Print to screen
+echo "
+Starting jellyfish.sh. Current params:
+INPUT_FILE: $INPUT_FILE
+OUTPUT_FILE: $OUTPUT_FILE
+KMER_SIZE: $KMER_SIZE
+THREADS: $THREADS
+LOW_COUNT: $LOW_COUNT
+"
+
+# Load required dependencies
+module load gcc jellyfish
 
 # Make output dir if needed
 mkdir -p $(dirname ${OUTPUT_FILE})
