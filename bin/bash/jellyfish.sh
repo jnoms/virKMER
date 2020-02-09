@@ -57,6 +57,9 @@ module load gcc jellyfish
 # Define defaults
 LOW_COUNT=${LOW_COUNT:-2}
 
+# Make output dir if needed
+mkdir -p $(dirname ${OUTPUT_FILE})
+
 # Run jellyfish
 jellyfish count -m $KMER_SIZE -s 100M -t $THREADS -C $INPUT_FILE -o ${OUTPUT_FILE}.jf
 
