@@ -39,6 +39,9 @@ usage() {
           place to add a viral genomic database.
         -T <THREADS> [1]
           Number of computing threads
+        -l <LOW_COUNT> [2]
+          Miniumum number of times a kmer must be present in a file for it to be
+          considered.
         "
 }
 
@@ -89,7 +92,8 @@ for FILE in $EXPERIMENTAL_GLOB ; do
     -i $FILE \
     -o experimental_kmers/$(basename ${FILE%.fastq}).kmers \
     -k $KMER_SIZE \
-    -t $THREADS
+    -t $THREADS \
+    -L $LOW_COUNT
 done
 
 for FILE in $CONTROL_GLOB ; do
@@ -97,7 +101,8 @@ for FILE in $CONTROL_GLOB ; do
     -i $FILE \
     -o control_kmers/$(basename ${FILE%.fastq}).kmers \
     -k $KMER_SIZE \
-    -t $THREADS
+    -t $THREADS \
+    -L $LOW_COUNT
 done
 
 # Get enriched kmers between experimental and control
@@ -115,7 +120,8 @@ if [[ $GENOME_DATABASE_FA != '' ]] ; then
     -i $GENOME_DATABASE_FA  \
     -o genome_database.kmers \
     -k $KMER_SIZE \
-    -t $THREADS
+    -t $THREADS \
+    -L $LOW_COUNT
 
   # then get the common ones with the current enriched kmers
   python $VKMER/bin/python/get_common_kmers.py \

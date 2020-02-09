@@ -4,7 +4,7 @@ import pathlib
 import os
 
 def read_in_kmers(infile):
-    print("Reading in {}".formrat(infile))
+    print("Reading in {}".format(infile))
     kmers = set()
     with open(infile) as infile_handle:
         for line in infile_handle:
