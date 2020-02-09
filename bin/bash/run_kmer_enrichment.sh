@@ -39,7 +39,7 @@ usage() {
           place to add a viral genomic database.
         -T <THREADS> [1]
           Number of computing threads
-        -l <LOW_COUNT> [2]
+        -L <LOW_COUNT> [2]
           Miniumum number of times a kmer must be present in a file for it to be
           considered.
         "
@@ -52,7 +52,7 @@ if [ $# -le 3 ] ; then
 fi
 
 #Setting input
-while getopts e:c:o:k:t:d:T: option ; do
+while getopts e:c:o:k:t:d:T:L: option ; do
         case "${option}"
         in
                 e) EXPERIMENTAL_GLOB=${OPTARG};;
@@ -62,6 +62,7 @@ while getopts e:c:o:k:t:d:T: option ; do
                 t) THREASHOLD=${OPTARG};;
                 d) GENOME_DATABASE_FA=${OPTARG};;
                 T) THREADS=${OPTARG};;
+                L) LOW_COUNT=${OPTARG};;
         esac
 done
 
@@ -69,6 +70,7 @@ done
 # Set default params
 #------------------------------------------------------------------------------#
 THREADS=${THREADS:-1}
+LOW_COUNT=${LOW_COUNT:2}
 
 #------------------------------------------------------------------------------#
 # Main
@@ -84,6 +86,7 @@ KMER_SIZE: $KMER_SIZE
 THREASHOLD: $THREASHOLD
 GENOME_DATABASE_FA: $GENOME_DATABASE_FA
 THREADS: $THREADS
+LOW_COUNT: $LOW_COUNT
 "
 
 # Find kmers in experimental and control files
