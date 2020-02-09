@@ -11,8 +11,8 @@ In test runs, this procedure is capable of causing a massive enrichment of viral
 # Quickstart
 ```
 $VKMER/virKMER.sh \
--e "experimental/\*fastq" \
--c "control/\*fastq" \
+-e "experimental/*fastq" \
+-c "control/*fastq" \
 -o experimental_enriched_fastqs \
 -k <kmer size> \
 -t <# of experimental samples that must have kmer> \
