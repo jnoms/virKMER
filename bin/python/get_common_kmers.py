@@ -96,8 +96,13 @@ def main():
     kmers1 = read_in_kmers(input_one)
     kmers2 = read_in_kmers(input_two)
 
-    # Take intersection and collapse
+    # Take intersection
     intersection = kmers1.intersection(kmers2)
+
+    # Make sure all reverse complements are also kept
+    intersection = add_reverse_complement_to_set(intersection)
+
+    # Collapse to string
     intersection = "\n".join(intersection)
 
     # Make sure all reverse complements are also kept
