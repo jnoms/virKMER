@@ -2,6 +2,7 @@
 import argparse
 import pathlib
 import os
+from Bio.Seq import Seq
 
 def read_in_kmers(infile):
     print("Reading in {}".format(infile))
@@ -17,6 +18,15 @@ def read_in_kmers(infile):
             kmers.add(line.rstrip("\n"))
 
     return kmers
+
+def add_reverse_complement_to_set(input_set):
+    output_set = input_set
+
+    for kmer in input_set:
+        rev_comp = str(Seq(kmer).reverse_complement())
+        output_set.add(rev_comp)
+
+    return output_set
 
 def write_output(msg ,outfile):
 
@@ -89,6 +99,9 @@ def main():
     # Take intersection and collapse
     intersection = kmers1.intersection(kmers2)
     intersection = "\n".join(intersection)
+
+    # Make sure all reverse complements are also kept
+    intersection = add_reverse_complement_to_set(intersection)
 
     # Produce output
     write_output(intersection, output_file)

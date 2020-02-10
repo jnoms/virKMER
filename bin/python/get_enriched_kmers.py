@@ -60,6 +60,17 @@ def get_dict_from_infile_list(infile_list):
         out_dict[sample_name] = kmer_set
         out_set.update(kmer_set)
     return out_dict, out_set
+
+def add_reverse_complement_to_set(input_set):
+    output_set = input_set
+
+    for kmer in input_set:
+        rev_comp = str(Seq(kmer).reverse_complement())
+        output_set.add(rev_comp)
+
+    return output_set
+
+
 #------------------------------------------------------------------------------#
 # Main
 #------------------------------------------------------------------------------#
@@ -157,6 +168,9 @@ def main():
 
     # Determine which of the common experimental kmers are not present in the control kmers
     enriched_kmers = common_experimental_kmers - control_kmers
+
+    # Add the reverse complement of everything in case they are not there
+    enriched_kmers = add_reverse_complement_to_set(enriched_kmers)
     write_to_log(log_file, "enriched_kmers\t" + str(len(enriched_kmers)))
 
     # write enriched kmers to outfile
