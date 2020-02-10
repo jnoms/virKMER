@@ -105,9 +105,6 @@ def main():
     # Collapse to string
     intersection = "\n".join(intersection)
 
-    # Make sure all reverse complements are also kept
-    intersection = add_reverse_complement_to_set(intersection)
-
     # Produce output
     write_output(intersection, output_file)
 
