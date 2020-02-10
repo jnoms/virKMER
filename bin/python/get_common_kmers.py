@@ -20,7 +20,7 @@ def read_in_kmers(infile):
     return kmers
 
 def add_reverse_complement_to_set(input_set):
-    output_set = input_set
+    output_set = input_set.copy()
 
     for kmer in input_set:
         rev_comp = str(Seq(kmer).reverse_complement())
