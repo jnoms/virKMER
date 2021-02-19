@@ -22,4 +22,5 @@ $VKMER/virKMER.sh \
 
 # Planned improvements
 1) Port to Nextflow and manage dependencies with conda (for now, the virID conda yaml (https://github.com/jnoms/virID/blob/master/resources/virID_environment.yml) has all required dependencies).
-2) Currently, if a kmer is present even once in the control samples it will be removed from consideration. This is pretty stringent. Because Jellyfish gives abundance information, I will eventually do a proper "enrichment" analysis to address possible situations where a kmer is highly abundant in the experimental and very rare in the control samples.
+2) Currently, if a kmer is present even once in the control samples it will be removed from consideration. This is pretty stringent. Because Jellyfish gives abundance information, I will eventually do a proper "enrichment" analysis to address possible situations where a kmer is highly abundant in the experimental and very rare in the control samples.   
+3) Currently the script finds enriched kmers and then pulls out the associated reads without considering if the read contains a kmer present in the control samples. I can implement a setting to subsequntly search the enriched reads for "blacklisted" kmers.
